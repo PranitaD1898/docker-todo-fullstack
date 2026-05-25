@@ -1,0 +1,60 @@
+<div style="max-width: 800px; margin: 50px auto; padding: 20px; font-family: Arial;">
+  <h1 style="text-align: center; color: #333;">📝 Docker Todo App</h1>
+  
+  <!-- Add Todo Form -->
+  <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+    <h2 style="margin-top: 0;">Add New Todo</h2>
+    <input 
+      [(ngModel)]="newTodo.title" 
+      placeholder="Title" 
+      style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+    
+    <input 
+      [(ngModel)]="newTodo.description" 
+      placeholder="Description" 
+      style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+    
+    <button 
+      (click)="addTodo()" 
+      style="width: 100%; padding: 12px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
+      Add Todo
+    </button>
+  </div>
+
+  <!-- Todos List -->
+  <div>
+    <h2>Your Todos ({{ todos.length }})</h2>
+    
+    <div *ngIf="todos.length === 0" style="text-align: center; color: #999; padding: 40px;">
+      No todos yet. Add one above! 👆
+    </div>
+
+    <div *ngFor="let todo of todos" 
+         style="background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center;">
+      
+      <div style="flex: 1;">
+        <h3 [style.text-decoration]="todo.completed ? 'line-through' : 'none'" 
+            [style.color]="todo.completed ? '#999' : '#333'" 
+            style="margin: 0 0 5px 0;">
+          {{ todo.title }}
+        </h3>
+        <p style="margin: 0; color: #666;">{{ todo.description }}</p>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button 
+          (click)="toggleComplete(todo)" 
+          [style.background]="todo.completed ? '#ff9800' : '#4CAF50'"
+          style="padding: 8px 16px; color: white; border: none; border-radius: 4px; cursor: pointer;">
+          {{ todo.completed ? 'Undo' : 'Complete' }}
+        </button>
+        
+        <button 
+          (click)="deleteTodo(todo._id!)" 
+          style="padding: 8px 16px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
