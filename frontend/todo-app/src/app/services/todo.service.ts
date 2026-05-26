@@ -13,7 +13,7 @@ export interface Todo {
   providedIn: 'root'
 })
 export class TodoService {
-  private apiUrl = 'http://localhost:5000/api/todos';
+  private apiUrl = 'https://todo-backend-fullstack.onrender.com/api/todos';
 
   constructor(private http: HttpClient) { }
 
